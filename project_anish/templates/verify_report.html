@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Report - Smart Healthcare</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #4CAF50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #333;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin: 8px 0 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #6a11cb;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: #2575fc;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #6a11cb;
+        }
+
+        .verification-status {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .verification-status.success {
+            color: #28a745;
+        }
+
+        .verification-status.error {
+            color: #dc3545;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        footer a {
+            color: #2575fc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Verify Report</h1>
+        <form method="POST" action="{{ url_for('verify_report') }}">
+            <label for="report_id">Report ID:</label>
+            <input type="text" name="report_id" required><br>
+
+            <label for="signature">Signature:</label>
+            <input type="text" name="signature" required><br>
+
+            <button type="submit">Verify Report</button>
+        </form>
+
+        {% if verification_status %}
+            <p class="verification-status {% if 'success' in verification_status.lower() %}success{% else %}error{% endif %}">
+                {{ verification_status }}
+            </p>
+        {% endif %}
+
+        <footer>
+            <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+        </footer>
+    </div>
+</body>
+</html>

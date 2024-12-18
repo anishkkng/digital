@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Report - Smart Healthcare</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa; /* Light teal background for a fresh feel */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            border-top: 5px solid #00bcd4; /* Bright teal accent */
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #00695c; /* Dark teal color */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #00796b; /* Teal color */
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px;
+            border: 1px solid #00796b;
+            border-radius: 6px;
+            font-size: 1.1em;
+            background-color: #f1f8e9; /* Light greenish background */
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="date"]:focus {
+            border-color: #00bcd4;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: #00bcd4; /* Bright teal */
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0097a7; /* Darker teal on hover */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
+        footer a {
+            color: #00bcd4; /* Matching teal link */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Generate Medical Report</h1>
+        <form method="POST" action="{{ url_for('create_report') }}">
+            <label for="patient_name">Patient Name:</label>
+            <input type="text" name="patient_name" required><br>
+
+            <label for="diagnosis">Diagnosis:</label>
+            <input type="text" name="diagnosis" required><br>
+
+            <label for="treatment">Treatment:</label>
+            <input type="text" name="treatment" required><br>
+
+            <label for="report_date">Report Date:</label>
+            <input type="date" name="report_date" required><br>
+
+            <button type="submit">Generate Report</button>
+        </form>
+
+        <footer>
+            <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+        </footer>
+    </div>
+</body>
+</html>
